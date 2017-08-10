@@ -1,0 +1,44 @@
+{% extends '@Survey/admin/index.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Rate {{ rate.name }} for type {{ rate.surveyType }}
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped table-hover table-responsive">
+                    <thead class="thead-default">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Type</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row"><a href="{{ path('rate_show', { 'id': rate.id }) }}">{{ rate.id }}</a></th>
+                        <td>{{ rate.name }}</td>
+                        <td>{{ rate.value }}</td>
+                        <td>{{ rate.surveyType }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{{ path('rate_edit', { 'id': rate.id }) }}" class="btn btn-info">Edit</a>
+                                {{ form_start(delete_form) }}
+                                <input type="submit" value="Delete" class="btn btn-danger">
+                                {{ form_end(delete_form) }}
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="{{ path('rate_index') }}" class="btn btn-bg btn-info">Back to the list</a>
+                <a href="{{ path('rate_new') }}" class="btn btn-bg btn-danger">Create new rate</a>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% block filters %}
+Filter by:
+<div class="form-inline">
+    {{ form_start(filters) }}
+    <div class="input-group-lg input-group m-2">
+        {{ form_widget(filters.filters) }}
+    </div>
+    <div class="input-group-lg input-group m-2">
+        {{ form_widget(filters.start) }}
+    </div>
+    <div class="input-group-lg input-group m-2">
+        {{ form_widget(filters.end) }}
+    </div>
+    <div class="input-group-lg input-group m-2">
+        {{ form_widget(filters.filter) }}
+    </div>
+    {{ form_end(filters) }}
+</div>
+{% endblock %}

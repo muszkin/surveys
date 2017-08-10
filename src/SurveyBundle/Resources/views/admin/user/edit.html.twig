@@ -1,0 +1,49 @@
+{% extends '@Survey/admin/index.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Edit user {{ user }}
+            </div>
+            <div class="panel-body">
+                {{ form_start(edit_form) }}
+                <div class="input-group-lg input-group m-2">
+                    <span class="input-group-addon glyphicon glyphicon-triangle-right" id="sizing-addon1"></span>
+                    {{ form_widget(edit_form.name) }}
+                </div>
+                <div class="input-group input-group-lg m-2">
+                    <span class="input-group-addon glyphicon glyphicon-triangle-right" id="sizing-addon1"></span>
+                    {{ form_widget(edit_form.username) }}
+                </div>
+                <div class="input-group input-group-lg m-2">
+                    <span class="input-group-addon glyphicon glyphicon-triangle-right" id="sizing-addon1"></span>
+                    {{ form_widget(edit_form.team) }}
+                </div>
+                <div class="input-group input-group-lg m-2">
+                    <span class="input-group-addon glyphicon glyphicon-triangle-right" id="sizing-addon1"></span>
+                    {{ form_widget(edit_form.email) }}
+                </div>
+                <div class="input-group input-group-lg m-2">
+                    <span class="input-group-addon glyphicon glyphicon-triangle-right" id="sizing-addon1"></span>
+                    {{ form_widget(edit_form.sid) }}
+                </div>
+                <div class="input-group input-group-lg m-2">
+                    <span class="input-group-addon glyphicon glyphicon-triangle-right" id="sizing-addon1"></span>
+                    {{ form_widget(edit_form.admin_id) }}
+                </div>
+                <div class="input-group input-group-lg m-2">
+                    <span class="input-group-addon glyphicon glyphicon-triangle-right" id="sizing-addon1"></span>
+                    {{ form_widget(edit_form.password) }}
+                </div>
+
+                <input type="submit" value="Edit" class="btn btn-bg btn-warn m-2"/>
+                {{ form_end(edit_form) }}
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-bg btn-danger m-2">
+                {{ form_end(delete_form) }}
+                <a href="{{ path('showAllUsers') }}" class="btn btn-info m-2">Back to the list</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

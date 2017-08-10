@@ -1,0 +1,29 @@
+{% extends '@Survey/admin/index.html.twig' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Team creation
+        </div>
+        <div class="panel-body">
+            {{ form_start(form) }}
+            <div class="input-group-lg input-group m-2">
+                <span class="input-group-addon glyphicon glyphicon-triangle-right" id="sizing-addon1"></span>
+                {{ form_widget(form.name) }}
+            </div>
+            <div class="input-group input-group-lg m-2">
+                <span class="input-group-addon glyphicon glyphicon-triangle-right" id="sizing-addon1"></span>
+                {{ form_widget(form.module) }}
+            </div>
+
+            <input type="submit" value="Create" class="btn btn-bg btn-warn m-2"/>
+            {{ form_end(form) }}
+            <a href="{{ path('team_index') }}" class="btn btn-info m-2">Back to the list</a>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends '@Survey/admin/index.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Rates list
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped table-hover table-responsive">
+                    <thead class="thead-default">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Survey Type</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for rate in rates %}
+                        <tr>
+                            <th scope="row"><a href="{{ path('rate_show', { 'id': rate.id }) }}">{{ rate.id }}</a></th>
+                            <td>{{ rate.name }}</td>
+                            <td>{{ rate.value }}</td>
+                            <td>{{ rate.surveyType }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('rate_show', { 'id': rate.id }) }}">Show</a></li>
+                                        <li><a href="{{ path('rate_edit', { 'id': rate.id }) }}">Edit</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{{ path('rate_new') }}" class="btn btn-bg btn-danger">Create a new rate</a>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

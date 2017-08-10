@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?><xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file datatype="plaintext" original="file.ext" source-language="en" target-language="pl">
+        <body>
+            <trans-unit id="1">
+                <source>survey.title</source>
+                <target>Ankiety</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>You can't vote in work</source>
+                <target>Nie wolno głosować z pracy - twoje działanie zostanie odnotowane</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Survey doesn't exists</source>
+                <target>Ankieta nie istnieje</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Wrong checksum for survey</source>
+                <target>Błędna suma kontrolna ankiety</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Thank you for voting in this survey</source>
+                <target>Dziękujemy za oddanie głosu w ankiecie</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>You can't vote again yet</source>
+                <target>Nie możesz jeszcze ponownie zagłosować w tej ankiecie</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>You already voted in this survey</source>
+                <target>Już oddałeś głos w tej ankiecie</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Time for again vote has passed</source>
+                <target>Czas na ponowne głosowanie upłynął</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Time for vote has passed</source>
+                <target>Czas na głosowanie upłynął</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>All</source>
+                <target>Wszystkie</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Opened</source>
+                <target>Otwarte</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Voted</source>
+                <target>Z oddanym głosem</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Resend send</source>
+                <target>Wysłana prośba o ponowną ocenę</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Resend open</source>
+                <target>Ponowna ankieta otwarta</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Resend voted</source>
+                <target>Ankiety z ponownie oddanym głosem</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>With cancel request</source>
+                <target>Prośba o anulowanie</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>With cancel request (need reaction)</source>
+                <target>Prośba o anulowanie (wymaga akcji)</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>In 5 seconds you will be redirect to www.shoper.pl</source>
+                <target>W ciągu 5 sekund zostaniesz przeniesiony na stronę www.shoper.pl</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>Is my respone was helpful / understood ?</source>
+                <target>Czy moja odpowiedź była pomocna / zrozumiała ?</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>Be briefly what influenced your decision</source>
+                <target>Opisz krótko co wpłyneło na twoją decyzję</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>Is another contact should be handled by the same consultant?</source>
+                <target>Czy kolejny kontakt miałby być obsłużony przez tego samego konsultanta?</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Send vote</source>
+                <target>Głosuj</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Filter by:</source>
+                <target>Filtruj:</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>Agree</source>
+                <target>Wyrażam zgodę</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>Approve</source>
+                <target>Wyrażam zgodę</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Disapprove</source>
+                <target>Nie wyrażam zgody</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>Canceled</source>
+                <target>Anulowano</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>React</source>
+                <target>Zareaguj</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>This is not your survey</source>
+                <target>To nie jest twoja ankieta</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>Request for re-evaluation</source>
+                <target>Prośba o ponowną ocenę</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>Survey after phone call</source>
+                <target>Oceń rozmowę telefoniczną z konsultantem Shoper</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>New rate in system (resend)</source>
+                <target>Nowa ocena (ponowne głosowanie)</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>New rate in system</source>
+                <target>Nowa ocena</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>New cancel request</source>
+                <target>Nowa prośba o anulowanie oceny</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>Surely No</source>
+                <target>Zdecydowanie nie</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>Surely Yes</source>
+                <target>Zdecydowanie tak</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>Don't care</source>
+                <target>Nieważne</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>Not necessary</source>
+                <target>Niekoniecznie</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>Sure</source>
+                <target>Tak</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>Surely No</source>
+                <target>Napewno nie</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>Yes, please</source>
+                <target>Tak, proszę</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>Is my respone on phone was helpful ?</source>
+                <target>Czy moja pomoc przez telefon była wystarczająca?</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

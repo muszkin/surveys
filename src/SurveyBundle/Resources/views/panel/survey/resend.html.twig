@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="input-group-lg input-group m-2">
+            <label for="contact">Type of contact</label>
+            <select name="contact" id="contact" class="form-control">
+                <option value="phone">Phone</option>
+                <option value="email">Email</option>
+            </select>
+        </div>
+        <div class="input-group-lg input-group m-2">
+            <label for="contact_date">Date of contact</label>
+            <input type="datetime" name="contact_date" id="contact_date" class="form-control">
+        </div>
+        <div class="input-group-lg input-group m-2">
+            <label for="user_comment">Describe your request</label>
+            <textarea rows="4" class="form-control" id="user_comment"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-success resend-send" data-dismiss="modal" data-url="{{ path('survey_resend_request',{'survey':survey.id}) }}">
+            Resend survey
+        </button>
+    </div>
+</div>

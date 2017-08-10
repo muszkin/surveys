@@ -1,0 +1,170 @@
+{% extends '@Survey/admin/index.html.twig' %}
+{% trans_default_domain 'SurveyBundle' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                User info for {{ user.name }}
+                <br/>
+                {% include '@Survey/admin/filters.html.twig' %}
+                {% block filters %}
+                {% endblock %}
+                <div>
+                    {{ "Ratings"|trans }}
+                    <strong>Nps: {{ ratings.nps.rate |round(2)}} ({{ ratings.nps.votes }})</strong>
+                    <strong>Reply: {{ ratings.reply.rate |round(2)}}% ({{ ratings.reply.votes }})</strong>
+                    <strong>Phone: {{ ratings.phone_in.rate |round(2)}} ({{ ratings.phone_in.votes }})</strong>
+                </div>
+                All surveys: {{ pagination.getTotalItemCount }}
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+            <div class="panel-body">
+                    <table class="table table-bordered table-striped table-hover table-responsive">
+                        <thead class="thead-default">
+                            <th>Id</th>
+                            <th>Ticket id</th>
+                            <th>Post id</th>
+                            <th>Client id</th>
+                            <th>Type</th>
+                            <th>Send date</th>
+                            <th>Open date</th>
+                            <th>Vote date</th>
+                            <th>Resend date</th>
+                            <th>Resend open date</th>
+                            <th>Resend vote date</th>
+                            <th>Rate</th>
+                            <th>Resend rate</th>
+                            <th>Comment</th>
+                            <th>Resend comment</th>
+                            <th>User comment</th>
+                            <th>Admin comment</th>
+                        </thead>
+                        <tbody>
+                        {% for survey in pagination %}
+                            <tr {% if survey.adminComment is not null %} style="color:red;"{% endif %}>
+                                <td scope="row">{{ survey.id }}</td>
+                                <td>
+                                    {% if survey.ticketId is not null %}
+                                        <a href="https://pomoc.shoper.pl/staff/index.php?/Tickets/Ticket/View/{{ survey.ticketId }}" target="_blank">{{ survey.ticketId }}</a>
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.postId is not null %}
+                                        <a href="https://pomoc.shoper.pl/staff/index.php?/Tickets/Ticket/View/{{ survey.ticketId }}/#{{ survey.postId }}" target="_blank">{{ survey.postId }}</a>
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.clientId is not null %}
+                                        <a href="https://admin.shoper.pl/admin/client/edit/id/{{ survey.clientId }}" target="_blank">{{ survey.clientId }}</a>
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.surveyType is not null %}
+                                        {{ survey.surveyType }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.sendDate is not null %}
+                                        {{ survey.sendDate|date("Y-m-d H:i:s") }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.openDate is not null %}
+                                        {{ survey.openDate|date("Y-m-d H:i:s") }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.voteDate is not null %}
+                                        {{ survey.voteDate|date("Y-m-d H:i:s") }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.resendDate is not null %}
+                                        {{ survey.resendDate|date("Y-m-d H:i:s") }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.resendOpenDate is not null %}
+                                        {{ survey.resendOpenDate|date("Y-m-d H:i:s") }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.resendVoteDate is not null %}
+                                        {{ survey.resendVoteDate|date("Y-m-d H:i:s") }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.rate is not null %}
+                                        {{ survey.rate }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.resendRate is not null %}
+                                        {{ survey.resendRate }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.comment is not null %}
+                                        {{ survey.comment }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.resendComment is not null %}
+                                        {{ survey.resendComment }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.userComment is not null %}
+                                        {{ survey.userComment }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if survey.adminComment is not null %}
+                                        {{ survey.adminComment }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                <a href="{{ path('showAllUsers') }}" class="btn btn-bg btn-info">Back to user list</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

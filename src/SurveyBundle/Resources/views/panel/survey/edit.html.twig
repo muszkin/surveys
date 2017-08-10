@@ -1,0 +1,155 @@
+{% extends '@Survey/panel/index.html.twig' %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{ 'Survey id:'|trans([],'SurveyBundle') }}{{ survey.id }}
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped table-hover table-responsive">
+                    <tr>
+                        <td>Id:</td>
+                        <td>{{ survey.id }}</td></tr>
+                    <tr>
+                        <td>Ticket id:</td>
+                        <td>{{ survey.ticketId }}</td></tr>
+                    <tr>
+                        <td>Post id:</td>
+                        <td>{{ survey.postId }}</td></tr>
+                    <tr>
+                        <td>Client id:</td>
+                        <td>{{ survey.clientId }}</td></tr>
+                    <tr>
+                        <td>Type:</td>
+                        <td>{{ survey.surveyType }}</td></tr>
+                    <tr>
+                        <td>Send date:</td>
+                        <td>{{ survey.sendDate|date('Y-m-d H:i:s') }}</td></tr>
+                    <tr>
+                        <td>Open date:</td>
+                        <td>
+                            {% if survey.openDate is not null %}
+                                {{ survey.openDate|date('Y-m-d H:i:s') }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Vote date:</td>
+                        <td>
+                            {% if survey.voteDate is not null %}
+                                {{ survey.voteDate | date('Y-m-d H:i:s') }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Resend date:</td>
+                        <td>
+                            {% if survey.resendDate is not null %}
+                                {{ survey.resendDate | date('Y-m-d H:i:s') }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Resend open date:</td>
+                        <td>
+                            {% if survey.resendOpenDate is not null %}
+                                {{ survey.resendOpenDate | date('Y-m-d H:i:s') }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Resend vote date:</td>
+                        <td>
+                            {% if survey.resendVoteDate is not null %}
+                                {{ survey.resendVoteDate | date('Y-m-d H:i:s') }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Rate:</td>
+                        <td>{{ survey.rate }}</td></tr>
+                    <tr>
+                        <td>Resend rate:</td>
+                        <td>{{ survey.resendRate }}</td></tr>
+                    <tr>
+                        <td>Comment:</td>
+                        <td>{{ survey.comment }}</td></tr>
+                    <tr>
+                        <td>Resend comment:</td>
+                        <td>{{ survey.resendComment }}</td></tr>
+                    <tr>
+                        <td>User comment:</td>
+                        <td>{{ survey.userComment }}</td></tr>
+                    <tr>
+                        <td>Admin comment:</td>
+                        <td>{{ survey.adminComment }}</td></tr>
+                    <tr>
+                        <td colspan="2">
+                            {% if survey.voteDate is not null %}
+                                {% set difference = date('now').diff(date(survey.voteDate)) %}
+                                {% set leftDays = difference.days %}
+                                {% if leftDays <= 3
+                                and survey.resendDate is null
+                                and survey.resendOpenDate is null
+                                and survey.resendVoteDate is null
+                                and survey.resendRate is null %}
+                                    <button type="button" data-url="{{ path('survey_resend_request', { 'survey' : survey.id}) }}" class="btn btn-danger btn-lg resend" data-toggle="modal" data-target="#resend">
+                                        {{ 'Resend survey' | trans }}
+                                    </button>
+                                {% endif %}
+                            {% endif %}
+                            {% if survey.voteDate is not null %}
+                                {% set difference = date('now').diff(date(survey.voteDate)) %}
+                                {% set leftDays = difference.days %}
+                                {% if leftDays <= 30 and survey.userComment is null %}
+                                    <button type="button" data-url="{{ path('survey_cancel_request', { 'survey' : survey.id}) }}" class="btn btn-danger btn-lg cancel" data-toggle="modal" data-target="#cancel">
+                                        {{ 'Cancel request' | trans }}
+                                    </button>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+                <div id="cancel" class="modal fade" tabindex="-1" role="alertdialog" aria-labelledby="modal_label">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="modal-label">Cancel request</h4>
+                            </div>
+                            <div class="modal-body cancel-body" id="modal-content">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="resend" class="modal fade" tabindex="-1" role="alertdialog" aria-labelledby="modal_label">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="modal-label">Resend request</h4>
+                            </div>
+                            <div class="modal-body resend-body" id="modal-content">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="{{ referer }}" class="btn btn-bg btn-info">Back</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

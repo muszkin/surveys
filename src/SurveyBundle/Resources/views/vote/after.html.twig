@@ -1,0 +1,36 @@
+{% extends '@Survey/vote/base.html.twig' %}
+
+{% block body %}
+    <header id="main-header">
+        <div class="rwd-layout-width">
+            <figure>
+                <a href="https://www.shoper.pl/">
+                    <img src="{{ asset('images/shoper.png') }}" alt="Shoper">
+                </a>
+            </figure>
+        </div>
+    </header>
+    <main>
+        <section class="rwd-layout-section rwd-layout-section-bg clearfix" style="margin-bottom: 0;">
+            <div class="rwd-layout-width">
+                <span class="step" id="first">
+                    <div id="status" class="center">
+                        {% if info is defined %}
+                            <h2>{{ info }}</h2>
+                        {% endif %}
+                        <p>{{ 'In 5 seconds you will be redirect to www.shoper.pl'|trans }}</p>
+                        <input type="hidden" id="back" value="1">
+                    </div>
+                </span>
+            </div>
+        </section>
+        <footer class="rwd-layout-section clearfix">
+            <div class="rwd-layout-width">
+                <aside class="center">
+                    Strona korzysta z plików Cookies w celu realizacji usług zgodnie z <a href="https://www.shoper.pl/regulamin/polityka-cookies/">Polityką Cookies</a>. Możesz określić warunki przechowywania lub dostępu do cookies w Twojej przeglądarce.<br>
+                    Copyright &copy; 2005-2015 <a href="https://www.shoper.pl/">Shoper</a> - DreamCommerce S.A.
+                </aside>
+            </div>
+        </footer>
+    </main>
+{% endblock %}

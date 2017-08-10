@@ -1,0 +1,46 @@
+{% extends '@Survey/panel/index.html.twig' %}
+{% set npsratio = nps.rate %}
+{% set replyratio = reply.rate %}
+{% set phoneinratio = phonein.rate %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row" style="padding-bottom:10px;">
+            <h2>
+                <div class="col-xs-4 col-xs-offset-4 label label-success">
+                    {{ period.start|date }} - {{ period.end |date}}
+                </div>
+            </h2>
+        </div>
+        <div class="row row-centered">
+            <div class="col-xs-8 col-xs-offset-2">
+                {% if nps.rate is defined %}
+                    <div class="c100 p{{ nps.rate | round }} big {% if nps.rate >= 55 %}green{% else %}red{% endif %}" id="nps">
+                        <span>{{ nps.rate|round(2) }}<br/>NPS</span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if reply.rate is defined %}
+                    <div class="c100 p{{ reply.rate | round }} big {% if reply.rate >= 90 %}green{% else %}red{% endif %}" id="reply">
+                        <span>{{ reply.rate|round(2) }}%<br/>REPLY</span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if phonein.rate is defined %}
+                    <div class="c100 p{{ phonein.rate | round }} big {% if phonein.rate >= 90 %}green{% else %}red{% endif %}" id="phonein">
+                        <span>{{ phonein.rate|round(2) }}%<br/>NPS PHONE</span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

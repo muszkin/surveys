@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <div class="row">
+            <table class="table table-bordered table-striped table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>
+                            Case link
+                        </th>
+                        <th>
+                            Client comment
+                        </th>
+                        <th>
+                            Resend client comment
+                        </th>
+                        <th>
+                            Rate
+                        </th>
+                        <th>
+                            Resend rate
+                        </th>
+                        <th>
+                            Vote date
+                        </th>
+                        <th>
+                            Resend vote date
+                        </th>
+                        <th>
+                            User Comment
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            {% if survey.ticketId is not null and survey.postId is not null %}
+                                <a href="https://pomoc.shoper.pl/staff/index.php?/Tickets/Ticket/View/{{ survey.ticketId }}/#{{ survey.postId }}" target="_blank">Go to Kayako</a>
+                            {% elseif survey.clientId is not null %}
+                                <a href="https://admin.shoper.pl/admin/client/edit/id/{{ survey.clientId }}">Go to Admin.shoper.pl</a>
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </td>
+                        <td>{{ survey.comment }}</td>
+                        <td>{{ survey.resendComment }}</td>
+                        <td>{{ survey.rate }}</td>
+                        <td>{{ survey.resendRate }}</td>
+                        <td>{{ survey.voteDate |date}}</td>
+                        <td>{{ survey.resendVoteDate |date}}</td>
+                        <td>{{ survey.userComment }}</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+    <div class="row">
+        <textarea rows="4" class="form-control" id="admin_comment">{{ 'Agree'|trans([],'SurveyBundle') }}</textarea>
+        <button type="button" class="btn btn-success react-send" data-dismiss="modal" data-url="{{ path('survey_react',{'survey':survey.id,'react':1}) }}">
+            {{ 'Approve'|trans([],'SurveyBundle') }}
+        </button>
+        <button type="button" class="btn btn-danger react-send" data-dismiss="modal" data-url="{{ path('survey_react',{'survey':survey.id,'react':0}) }}">
+            {{ 'Disapprove'|trans([],'SurveyBundle') }}
+        </button>
+    </div>
+</div>

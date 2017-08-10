@@ -1,0 +1,49 @@
+{% extends '@Survey/vote/base.html.twig' %}
+
+{% block body %}
+    <header id="main-header">
+        <div class="rwd-layout-width">
+            <figure>
+                <a href="https://www.shoper.pl/">
+                    <img src="{{ asset('images/shoper.png') }}" alt="Shoper">
+                </a>
+            </figure>
+        </div>
+    </header>
+    <main>
+        <section class="rwd-layout-section rwd-layout-section-bg clearfix" style="margin-bottom: 0;">
+            <div class="rwd-layout-width">
+                <span class="step" id="first">
+						<span class="step" id="first">
+                            {{ form_start(form) }}
+                            <p class="center">{{ form_label(form.rate) }}</p>
+							<div class="radio-toolbar reply center ">
+                                {% for child in form.rate.children %}
+                                    {{ form_widget(child) }}
+				    <label class="{% if child.vars.label == 'Tak' %}yes{% else %}no{% endif %}" for="{{ child.vars.id }}">
+                                        {{ child.vars.label }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+							<p id="comment" class="center" style="margin-top:50px;">
+                                {{ form_label(form.comment) }}
+                            </p>
+							<div class="ta center">
+                                {{ form_widget(form.comment) }}
+                            </div>
+						</span>
+                        {{ form_widget(form.submit) }}
+                    {{ form_end(form) }}
+                </span>
+            </div>
+        </section>
+        <footer class="rwd-layout-section clearfix">
+            <div class="rwd-layout-width">
+                <aside class="center">
+                    Strona korzysta z plików Cookies w celu realizacji usług zgodnie z <a href="https://www.shoper.pl/regulamin/polityka-cookies/">Polityką Cookies</a>. Możesz określić warunki przechowywania lub dostępu do cookies w Twojej przeglądarce.<br>
+                    Copyright &copy; 2005-2015 <a href="https://www.shoper.pl/">Shoper</a> - DreamCommerce S.A.
+                </aside>
+            </div>
+        </footer>
+    </main>
+{% endblock %}

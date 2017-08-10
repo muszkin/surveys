@@ -1,0 +1,65 @@
+{% extends '@Survey/admin/index.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                User list
+                {% if filters is defined %}
+                    {% include '@Survey/admin/filters/filters.html.twig' %}
+                    {% block filters %}
+                    {% endblock %}
+                {% endif %}
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped table-hover table-responsive">
+                    <thead class="thead-default">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Team</th>
+                        <th>E-mail</th>
+                        <th>Staff Id (Kayako)</th>
+                        <th>Admin id (admin.shoper.pl)</th>
+                        <th>Reply rating</th>
+                        <th>Nps rating</th>
+                        <th>Phone rating</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <th scope="row">{{ user.id }}</th>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.team }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.sid }}</td>
+                            <td>{{ user.adminId }}</td>
+                            <td>{{ ratings[user.id].reply.rate |round(2)}}% ({{ ratings[user.id].reply.votes }})</td>
+                            <td>{{ ratings[user.id].nps.rate |round(2)}} ({{ ratings[user.id].nps.votes }})</td>
+                            <td>{{ ratings[user.id].phone_in.rate|round(2) }} ({{ ratings[user.id].phone_in.votes }})</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('show_user', { 'id': user.id }) }}">Show</a></li>
+                                        <li><a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{{ path('user_new') }}" class="btn btn-bg btn-danger">Create a new user</a>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

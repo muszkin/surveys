@@ -1,0 +1,36 @@
+{% block filters %}
+{{ "Filter by:" | trans([],'SurveyBundle') }}
+<div class="form-inline">
+    {{ form_start(filters) }}
+    {% if filters.filters is defined %}
+        <div class="input-group-lg input-group m-2">
+            {{ form_widget(filters.filters) }}
+        </div>
+    {% endif %}
+    {% if filters.type is defined %}
+        <div class="input-group-lg input-group m-2">
+            {{ form_widget(filters.type) }}
+        </div>
+    {% endif %}
+    {% if filters.user is defined %}
+        <div class="input-group-lg input-group m-2">
+            {{ form_widget(filters.user) }}
+        </div>
+    {% endif %}
+    <div class="input-group-lg input-group m-2">
+        {{ form_widget(filters.start) }}
+    </div>
+    <div class="input-group-lg input-group m-2">
+        {{ form_widget(filters.end) }}
+    </div>
+    {% if filters.limit is defined %}
+    <div class="input-group-lg input-group m-2">
+        {{ form_widget(filters.limit) }}
+    </div>
+    {% endif %}
+    <div class="input-group-lg input-group m-2">
+        {{ form_widget(filters.filter) }}
+    </div>
+    {{ form_end(filters) }}
+</div>
+{% endblock %}

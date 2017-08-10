@@ -1,0 +1,47 @@
+{% extends "@Survey/admin/index.html.twig" %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-heading">
+                    Whole team rating:
+                    {% if filters is defined %}
+                        {% include '@Survey/admin/filters/filters.html.twig' %}
+                        {% block filters %}
+                        {% endblock %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="panel-body">
+                {% for name,team in ratings %}
+                <table class="table table-bordered table-striped table-hover table-responsive">
+                    <thead class="thead-default">
+                    <tr>
+                        <th colspan="5">{{ name }}</th>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <th>Rate</th>
+                        <th>Total number of surveys send</th>
+                        <th>Total number of surveys opened</th>
+                        <th>Total number of surveys voted</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for key,rating in team %}
+                        <tr>
+                            <td scope="row">{{ key }}</td>
+                            <td>{{ rating.rate |round(2)}}{% if key == 'reply' %} %{% endif %}</td>
+                            <td>{{ rating.total }}</td>
+                            <td>{{ rating.opened }}</td>
+                            <td>{{ rating.votes }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endfor %}
+                <a href="{{ path('showAllUsers') }}" class="btn btn-info m-2">Back to the list</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

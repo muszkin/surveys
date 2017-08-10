@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="input-group-lg input-group m-2">
+            <label for="user_comment">Describe your request</label>
+            <textarea rows="4" class="form-control" id="user_comment"></textarea>
+        </div>
+
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-success cancel-send" data-dismiss="modal" data-url="{{ path('survey_cancel_request',{'survey':survey.id}) }}">
+            Send cancel request
+        </button>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.form.registration:
+      class: SurveyBundle\Form\RegistrationType
+      tags:
+          - { name: form.type, alias: app_user_registration}
+    reply:
+      class: SurveyBundle\Services\ReplyService
+      arguments: ["@doctrine.orm.entity_manager"]
+    nps:
+      class: SurveyBundle\Services\NpsService
+      arguments: ["@doctrine.orm.entity_manager"]
+    phone_in:
+      class: SurveyBundle\Services\PhoneInService
+      arguments: ["@doctrine.orm.entity_manager"]
+    url:
+      class: SurveyBundle\Services\UrlService
+    ip:
+      class: SurveyBundle\Services\IpService
+    count:
+      class: SurveyBundle\Services\CountService
+      arguments: ["@doctrine.orm.entity_manager"]
+    survey_mailer:
+      class: SurveyBundle\Services\MailService
+      arguments: ["@service_container"]
+    validate_abstrac:
+      class: SurveyBundle\Services\ValidateAbstractService

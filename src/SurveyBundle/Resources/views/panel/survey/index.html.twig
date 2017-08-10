@@ -1,0 +1,240 @@
+{% extends '@Survey/panel/index.html.twig' %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                All surveys {{ pagination.getTotalItemCount }}
+                <br/>
+                {% if filters is defined %}
+                {% include '@Survey/panel/filters.html.twig' %}
+                {% block filters %}
+                {% endblock %}
+                {% endif %}
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <table class="table table-bordered table-striped table-hover table-responsive">
+                    <thead class="thead-default">
+                    <th>Id</th>
+                    <th>Ticket id</th>
+                    <th>Post id</th>
+                    <th>Client email</th>
+                    <th>Client id</th>
+                    <th>Type</th>
+                    <th>Send date</th>
+                    <th>Open date</th>
+                    <th>Vote date</th>
+                    <th>Resend date</th>
+                    <th>Resend open date</th>
+                    <th>Resend vote date</th>
+                    <th>Rate</th>
+                    <th>Resend rate</th>
+                    <th>Comment</th>
+                    <th>Resend comment</th>
+                    <th>User comment</th>
+                    <th>Admin comment</th>
+                    </thead>
+                    <tbody>
+                    {% for survey in pagination %}
+                        <tr>
+                            <td scope="row"><a href="{{ path('survey_edit',{'survey':survey.id}) }}">{{ survey.id }}</a></td>
+                            <td>
+                                {% if survey.ticketId is not null %}
+                                    {{ survey.ticketId }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.postId is not null %}
+                                    {{ survey.postId }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.clientEmail is not null %}
+                                    {{ survey.clientEmail }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.clientId is not null %}
+                                    {{ survey.clientId }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.surveyType is not null %}
+                                    {{ survey.surveyType }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.sendDate is not null %}
+                                    {{ survey.sendDate|date("Y-m-d H:i:s") }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.openDate is not null %}
+                                    {{ survey.openDate|date("Y-m-d H:i:s") }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.voteDate is not null %}
+                                    {{ survey.voteDate|date("Y-m-d H:i:s") }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.resendDate is not null %}
+                                    {{ survey.resendDate|date("Y-m-d H:i:s") }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.resendOpenDate is not null %}
+                                    {{ survey.resendOpenDate|date("Y-m-d H:i:s") }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.resendVoteDate is not null %}
+                                    {{ survey.resendVoteDate|date("Y-m-d H:i:s") }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.rate is not null %}
+                                    {{ survey.rate }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.resendRate is not null %}
+                                    {{ survey.resendRate }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.comment is not null %}
+                                    {{ survey.comment }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.resendComment is not null %}
+                                    {{ survey.resendComment }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.userComment is not null %}
+                                    {{ survey.userComment }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.adminComment is not null %}
+                                    {{ survey.adminComment }}
+                                {% else %}
+                                    {% if survey.cancel %}
+                                        <span class="red">Canceled</span>
+                                    {% else %}
+                                        <span class="red">Not canceled</span>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if survey.voteDate is not null %}
+                                    {% set difference = date('now').diff(date(survey.voteDate)) %}
+                                    {% set leftDays = difference.days %}
+                                        {% if leftDays <= 3
+                                        and survey.resendDate is null
+                                        and survey.resendOpenDate is null
+                                        and survey.resendVoteDate is null
+                                        and survey.resendRate is null %}
+                                            <button type="button" data-url="{{ path('survey_resend_request', { 'survey' : survey.id}) }}" class="btn btn-danger btn-lg resend" data-toggle="modal" data-target="#resend">
+                                                {{ 'Resend survey' | trans }}
+                                            </button>
+                                        {% endif %}
+                                {% endif %}
+                                {% if survey.voteDate is not null %}
+                                    {% set difference = date('now').diff(date(survey.voteDate)) %}
+                                    {% set leftDays = difference.days %}
+                                    {% if leftDays <= 30 and survey.userComment is null %}
+                                        <button type="button" data-url="{{ path('survey_cancel_request', { 'survey' : survey.id}) }}" class="btn btn-danger btn-lg cancel" data-toggle="modal" data-target="#cancel">
+                                            {{ 'Cancel request' | trans }}
+                                        </button>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div id="cancel" class="modal fade" tabindex="-1" role="alertdialog" aria-labelledby="modal_label">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="modal-label">Cancel request</h4>
+                            </div>
+                            <div class="modal-body cancel-body" id="modal-content">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="resend" class="modal fade" tabindex="-1" role="alertdialog" aria-labelledby="modal_label">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="modal-label">Resend request</h4>
+                            </div>
+                            <div class="modal-body resend-body" id="modal-content">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <a href="{{ path('index') }}" class="btn btn-bg btn-info">Back</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
