@@ -43,7 +43,7 @@ class PhoneInService extends ValidateAbstractService
             $this->em->persist($survey);
             $this->em->flush();
         }catch(\Exception $exception){
-            return $exception->getMessage();
+            throw new \Exception("Error when creating survey for phone_in type ".$exception->getMessage(),0,$exception);
         }
 
         return $survey;

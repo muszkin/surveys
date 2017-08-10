@@ -19,7 +19,6 @@ use SurveyBundle\Entity\User;
 use SurveyBundle\Form\FilterUserListType;
 use SurveyBundle\Repository\SurveyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -75,8 +74,13 @@ class SurveyController extends Controller
             throw new \Exception("No type specified");
         }
         try {
-            $survey = $this->get($data->type)->createSurvey($data, $user, $survey_type);
-            if ($survey_type->getId() == 3){
+            /** @var Survey $survey */
+            try {
+                $survey = $this->get($data->type)->createSurvey($data, $user, $survey_type);
+            }catch (\Exception $exception){
+                $logger->addDebug("Error when creating survey:\n ".$exception->getMessage());
+            }
+            if ($survey->getSurveyType()->getId() == 3){
                 $mailer = $this->get('survey_mailer')->sendPhoneInSurvey($survey);
                 $logger->addDebug("Mail debug:".var_export($mailer,true));
             }
