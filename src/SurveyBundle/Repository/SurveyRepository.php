@@ -117,8 +117,19 @@ class SurveyRepository extends \Doctrine\ORM\EntityRepository
                         ->addOrderBy('s.send_date','ASC')
                     ->setParameters([
                         "start" => $start,
-                        "end" => $end
+                        "end" => $end,
                     ]);
+
+                if ($user){
+                    $query
+                        ->andWhere($query->expr()->eq("s.user_id",$user->getId()))
+                        ;
+                }
+                if ($type){
+                    $query
+                        ->andWhere($query->expr()->eq("s.survey_type",$type->getId()))
+                    ;
+                }
                 break;
             case 'user_comment':
                 if (!is_null($user) && !is_null($type)) {

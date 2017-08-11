@@ -198,12 +198,14 @@
                                                                 razem z całym zespołem wciąż staramy się podnosić jakość naszych usług,
                                                                 dlatego kontakt i oceny ze strony klientów są dla nas bardzo ważne.
                                                                 Liczymy na każdy głos, najlepiej przesłany za pośrednictwem poniższej ankiety:
-                                                                wystarczy tylko, że w skali 0-10 określisz swoje zadowolenie z uzyskanej ode mnie pomocy.
-																<a style="background-color: #7dc641; color: #fff; display: inline-block; height: 35px; margin: 15px 10px 15px 0px; text-align: center; text-decoration: none;width: 140px; line-height: 35px;" href="{{ absolute_url(path('survey-vote',{"survey_id":survey.id,"checksum":survey.checksum})) }}">Oceń rozmowę</a>
-																<br>
+                                                                wystarczy tylko, że w skali 0-10 określisz swoje zadowolenie z uzyskanej ode mnie pomocy.<br/><br/>
+                                                                Kliknij w poniższy link by ocenić rozmowę:<br/>
+                                                                <strong><a style="background-color: #7dc641; color: #fff; display: inline-block; height: 35px; margin: 15px 10px 15px 0px; text-align: center; text-decoration: none;width: 140px; line-height: 35px;" href="{{ absolute_url(path('survey-vote',{"survey_id":survey.id,"checksum":survey.checksum})) }}">Oceń rozmowę</a></strong>
+																<br/>
                                                                 Data rozmowy: <strong>{{ survey.sendDate |date('Y-m-d H:i:s') }}</strong><br/>
                                                                 Konsultant: <strong>{{ survey.userId.name }}</strong><br/>
-																<br>
+																<br/><br/>
+                                                                Prosimy nie odpowiadać na tą wiadomość.
 															</span>
                                                         </td>
                                                     </tr>

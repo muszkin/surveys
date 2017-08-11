@@ -102,16 +102,16 @@ class SurveyController extends Controller
     public function voteSurvey($survey_id = null,$checksum = null,Request $request)
     {
         $ip = $request->getClientIps();
-        if (!$this->get('ip')->checkIp($ip)){
-            $result = $this->get('translator')->trans("You can't vote in work",[],'SurveyBundle');
-            return $this->render(
-                '@Survey/vote/after.html.twig',
-                [
-                    'info' =>
-                        $result
-                ]
-            );
-        }
+//        if (!$this->get('ip')->checkIp($ip)){
+//            $result = $this->get('translator')->trans("You can't vote in work",[],'SurveyBundle');
+//            return $this->render(
+//                '@Survey/vote/after.html.twig',
+//                [
+//                    'info' =>
+//                        $result
+//                ]
+//            );
+//        }
         if (!$checksum){
             $checksum = $request->query->get('checksum');
         }
