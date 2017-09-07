@@ -88,7 +88,7 @@
                             {% if survey.voteDate is not null %}
                                 {% set difference = date('now').diff(date(survey.voteDate)) %}
                                 {% set leftDays = difference.days %}
-                                {% if leftDays <= 3
+                                {% if leftDays <= 30
                                 and survey.resendDate is null
                                 and survey.resendOpenDate is null
                                 and survey.resendVoteDate is null
